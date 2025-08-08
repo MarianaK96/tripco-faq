@@ -7,11 +7,9 @@ import { ExclamationMarkIcon, InfoIcon } from "@phosphor-icons/react";
 import { Button, Tooltip } from "../atoms";
 import { Callout } from "../molecules";
 
-const DeletionOption = {
-  DELETE_ALL: "delete_all" as const,
-};
-export type DeletionOption =
-  (typeof DeletionOption)[keyof typeof DeletionOption];
+export const DELETE_ALL = "delete_all" as const;
+type DeletionOption = typeof DELETE_ALL;
+
 interface FAQSectionProps {
   onDelete: (index: string | DeletionOption) => void;
 }
@@ -86,7 +84,7 @@ export const FAQSection = ({ onDelete }: FAQSectionProps) => {
       {deleteIndex !== null && (
         <Modal
           message={
-            deleteIndex === DeletionOption.DELETE_ALL
+            deleteIndex === DELETE_ALL
               ? "Are you sure you want to delete all of your FAQs?"
               : "Are you sure you want to delete this FAQ?"
           }
@@ -96,7 +94,7 @@ export const FAQSection = ({ onDelete }: FAQSectionProps) => {
       )}
       {!noFaqs ? (
         <Button
-          onClick={() => setDeleteIndex(DeletionOption.DELETE_ALL)}
+          onClick={() => setDeleteIndex(DELETE_ALL)}
           type="submit"
           className="bg-amber-600 hover:bg-amber-700 text-white w-fit mx-auto px-8 mt-4"
         >

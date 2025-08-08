@@ -1,11 +1,9 @@
-import { FormSection, FAQSection } from "src/components/common/organisms";
+import {
+  FormSection,
+  FAQSection,
+  DELETE_ALL,
+} from "src/components/common/organisms";
 import { useFaqStore } from "src/store";
-
-const DeletionOption = {
-  DELETE_ALL: "delete_all" as const,
-};
-export type DeletionOption =
-  (typeof DeletionOption)[keyof typeof DeletionOption];
 
 export const LandingPageTemplate = () => {
   const faqStore = useFaqStore();
@@ -15,7 +13,7 @@ export const LandingPageTemplate = () => {
   };
 
   const deleteFAQ = (id: string) => {
-    if (id === DeletionOption.DELETE_ALL) {
+    if (id === DELETE_ALL) {
       faqStore.removeAllFaqs();
       return;
     }

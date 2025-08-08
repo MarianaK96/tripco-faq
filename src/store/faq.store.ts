@@ -14,9 +14,8 @@ export const faqSlice: StateCreator<FaqState, [], [], FaqState> = (set) => ({
     {
       id: "1234567",
       question: "What is your cancellation policy?",
-      answer:
-        "You can cancel within 7 days of your booking for a full refund. ",
-      createdAt: "",
+      answer: "You can cancel within 7 days of your booking for a full refund.",
+      createdAt: "1970-01-01T00:00:00.000Z",
     },
   ],
   searchQuery: "",
