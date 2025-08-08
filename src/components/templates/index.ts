@@ -1,1 +1,1 @@
-export * from "./movieDetails";
+export * from "./LandingPageTemplate";
