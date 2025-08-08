@@ -52,27 +52,3 @@ export const Error: Story = {
     children: "This is an error callout that indicates something went wrong.",
   },
 };
-
-export const CustomStyling: Story = {
-  args: {
-    icon: <InfoIcon className="text-purple-500" size={24} />,
-    children: "This callout has custom styling applied.",
-    className: "border-l-4 border-purple-500 bg-purple-50",
-  },
-};
-
-export const LongContent: Story = {
-  args: {
-    icon: <InfoIcon className="text-blue-500" size={24} />,
-    children: (
-      <div>
-        <p className="font-semibold mb-2">This is a longer callout</p>
-        <p>
-          It contains multiple paragraphs of text to demonstrate how the
-          component handles longer content. The icon stays aligned to the top
-          while the text wraps naturally.
-        </p>
-      </div>
-    ),
-  },
-};

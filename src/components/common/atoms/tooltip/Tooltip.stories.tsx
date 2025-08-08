@@ -25,3 +25,10 @@ export const WithIcon: Story = {
     children: <InfoIcon className="cursor-pointer text-blue-500" size={20} />,
   },
 };
+
+export const LongText: Story = {
+  args: {
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    children: <InfoIcon className="cursor-pointer text-blue-500" size={20} />,
+  },
+};

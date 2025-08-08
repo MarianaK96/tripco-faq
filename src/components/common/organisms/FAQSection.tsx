@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { FAQItem, Modal } from "src/components/common/molecules";
 import { FAQSorting } from "src/components/molecules/FAQSorting";
 import { useFaqStore } from "src/store";
-import { ExclamationMarkIcon, InfoIcon } from "@phosphor-icons/react";
+import { InfoIcon } from "@phosphor-icons/react";
 import { Button, Tooltip } from "../atoms";
 import { Callout } from "../molecules";
 
@@ -48,7 +48,12 @@ export const FAQSection = ({ onDelete }: FAQSectionProps) => {
       <section>
         <h2 className="text-2xl mb-4 font-bold">Queries</h2>
         <Callout
-          icon={<ExclamationMarkIcon className="bg-yellow-200 rounded-full" />}
+          icon={
+            <InfoIcon
+              weight="duotone"
+              className="text-yellow-400  rounded-full"
+            />
+          }
           children="Add some questions & answers using the form"
         />
       </section>
