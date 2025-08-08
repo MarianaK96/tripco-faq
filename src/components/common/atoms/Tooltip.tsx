@@ -5,9 +5,11 @@ interface TooltipProps {
   children: ReactNode;
 }
 
+type PositionType = "top" | "left" | "right";
+
 export const Tooltip = ({ text, children }: TooltipProps) => {
   const [visible, setVisible] = useState(false);
-  const [position, setPosition] = useState<"top" | "left">("top");
+  const [position, setPosition] = useState<PositionType>("top");
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   // tooltip is aware of container boundary
@@ -15,10 +17,10 @@ export const Tooltip = ({ text, children }: TooltipProps) => {
     if (visible && wrapperRef.current) {
       const rect = wrapperRef.current.getBoundingClientRect();
       const spaceOnRight = window.innerWidth - rect.right;
-      const spaceOnTop = rect.top;
+      const spaceOnBottom = window.innerHeight - rect.bottom;
 
-      if (spaceOnTop < 150) {
-        setPosition("left");
+      if (spaceOnBottom < 150) {
+        setPosition("top");
         return;
       }
 
@@ -26,7 +28,7 @@ export const Tooltip = ({ text, children }: TooltipProps) => {
         setPosition("left");
         return;
       }
-      setPosition("top");
+      setPosition("right");
     }
   }, [visible]);
 
@@ -51,6 +53,11 @@ export const Tooltip = ({ text, children }: TooltipProps) => {
                 ? "right-full mr-2 top-1/2 transform -translate-y-1/2"
                 : ""
             }
+              ${
+                position === "right"
+                  ? "left-full ml-2 bottom-1/2 transform translate-y-1/2"
+                  : ""
+              }
           `}
         >
           <span className="w-full">{text}</span>

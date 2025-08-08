@@ -48,15 +48,12 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
       <div className="py-10">
         <div className="flex items-center mb-4 gap-2">
           <h2 className="text-2xl font-bold">Submit a Question</h2>
-          <Tooltip text="Enter a question and answer, and it will be added to your FAQ section">
+          <Tooltip text="Enter a question & answer, and it will be added to your FAQ section">
             <InfoIcon className="cursor-pointer" />
           </Tooltip>
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4 flex flex-col items-center"
-        >
+        <form onSubmit={handleSubmit} className="space-y-4 flex flex-col ">
           <Input
             content={question}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -73,7 +70,7 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
           />
           <Button
             type="submit"
-            className="bg-amber-600 hover:bg-amber-700 text-white w-fit px-8 mx-auto"
+            className="bg-amber-600 hover:bg-amber-700 text-white w-fit px-8 "
           >
             Submit
           </Button>

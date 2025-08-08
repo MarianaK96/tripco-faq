@@ -1,2 +1,3 @@
-export { FAQItem } from "./FAQItem";
-export { Modal } from "./Modal";
+export * from "./FAQItem";
+export * from "./Modal";
+export * from "./Callout";

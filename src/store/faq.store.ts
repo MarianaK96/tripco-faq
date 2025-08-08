@@ -6,6 +6,7 @@ export interface FaqState {
   addFaq: (faq: IFaq) => void;
   updateFaq: (id: string, updates: Partial<IFaq>) => void;
   removeFaq: (id: string) => void;
+  removeAllFaqs: () => void;
 }
 
 export const faqSlice: StateCreator<FaqState, [], [], FaqState> = (set) => ({
@@ -34,5 +35,9 @@ export const faqSlice: StateCreator<FaqState, [], [], FaqState> = (set) => ({
   removeFaq: (id: string) =>
     set((state) => ({
       faqs: state.faqs.filter((faq) => faq.id !== id),
+    })),
+  removeAllFaqs: () =>
+    set(() => ({
+      faqs: [],
     })),
 });

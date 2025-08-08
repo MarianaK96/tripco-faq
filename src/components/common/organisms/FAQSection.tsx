@@ -3,9 +3,17 @@ import { FAQItem } from "../molecules/FAQItem";
 import { Modal } from "../molecules/Modal";
 import { FAQSorting } from "src/components/molecules/FAQSorting";
 import { useFaqStore } from "src/store";
+import { ExclamationMarkIcon, InfoIcon } from "@phosphor-icons/react";
+import { Button, Tooltip } from "../atoms";
+import { Callout } from "../molecules";
 
+const DeletionOption = {
+  DELETE_ALL: "delete_all" as const,
+};
+export type DeletionOption =
+  (typeof DeletionOption)[keyof typeof DeletionOption];
 interface FAQSectionProps {
-  onDelete: (index: string) => void;
+  onDelete: (index: string | DeletionOption) => void;
 }
 
 export const FAQSection = ({ onDelete }: FAQSectionProps) => {
@@ -36,11 +44,31 @@ export const FAQSection = ({ onDelete }: FAQSectionProps) => {
     setIsAscending(!isAscending);
   };
 
+  const noFaqs = sortedFaqs.length === 0;
+
+  if (noFaqs) {
+    return (
+      <section>
+        <h2 className="text-2xl mb-4 font-bold">Queries</h2>
+        <Callout
+          icon={<ExclamationMarkIcon className="bg-yellow-200 rounded-full" />}
+          children="Add some questions & answers using the form"
+        />
+      </section>
+    );
+  }
+
   return (
-    <section className="">
+    <section>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold mb-6">Queries</h2>
-        {sortedFaqs.length > 0 ? (
+        <div className="flex items-center mb-4 gap-2">
+          <h2 className="text-2xl font-bold">Queries</h2>
+          <Tooltip text="Your submitted questions & answers appear here.">
+            <InfoIcon className="cursor-pointer" />
+          </Tooltip>
+        </div>
+
+        {!noFaqs ? (
           <FAQSorting isAscending={isAscending} onClick={handleSort} />
         ) : null}
       </div>
@@ -57,11 +85,24 @@ export const FAQSection = ({ onDelete }: FAQSectionProps) => {
       </div>
       {deleteIndex !== null && (
         <Modal
-          message="Are you sure you want to delete this FAQ?"
+          message={
+            deleteIndex === DeletionOption.DELETE_ALL
+              ? "Are you sure you want to delete all of your FAQs?"
+              : "Are you sure you want to delete this FAQ?"
+          }
           onConfirm={handleConfirmDelete}
           onCancel={() => setDeleteIndex(null)}
         />
       )}
+      {!noFaqs ? (
+        <Button
+          onClick={() => setDeleteIndex(DeletionOption.DELETE_ALL)}
+          type="submit"
+          className="bg-amber-600 hover:bg-amber-700 text-white w-fit mx-auto px-8 mt-4"
+        >
+          Delete all
+        </Button>
+      ) : null}
     </section>
   );
 };
