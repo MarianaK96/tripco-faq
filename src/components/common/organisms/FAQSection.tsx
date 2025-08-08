@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FAQItem } from "../molecules/FAQItem";
 import { Modal } from "../molecules/Modal";
 import { FAQSorting } from "src/components/molecules/FAQSorting";
@@ -14,6 +14,10 @@ export const FAQSection = ({ onDelete }: FAQSectionProps) => {
   const [isAscending, setIsAscending] = useState(true);
   const [sortedFaqs, setSortedFaqs] = useState(faqStore.faqs);
 
+  useEffect(() => {
+    setSortedFaqs(faqStore.faqs);
+  }, [faqStore.faqs]);
+
   const handleConfirmDelete = () => {
     if (deleteIndex !== null) {
       onDelete(deleteIndex);
@@ -22,14 +26,12 @@ export const FAQSection = ({ onDelete }: FAQSectionProps) => {
   };
 
   const handleSort = () => {
-    console.log("sorting");
     const sorted = [...sortedFaqs].sort((a, b) => {
       return isAscending
         ? a.question.localeCompare(b.question)
         : b.question.localeCompare(a.question);
     });
 
-    console.log("sorted:", sorted);
     setSortedFaqs(sorted);
     setIsAscending(!isAscending);
   };

@@ -8,24 +8,39 @@ interface FormSectionProps {
   onSubmit: (faq: IFaq) => void;
 }
 
-export const FormSection = ({ onSubmit }: FormSectionProps) => {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+export interface IQuestionAnswer {
+  value: string;
+  error: string | undefined;
+}
 
-  // @TODO
-  // how often should this rerender
+export const FormSection = ({ onSubmit }: FormSectionProps) => {
+  const [question, setQuestion] = useState<IQuestionAnswer>({
+    value: "",
+    error: undefined,
+  });
+  const [answer, setAnswer] = useState<IQuestionAnswer>({
+    value: "",
+    error: undefined,
+  });
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!question.trim() || !answer.trim()) return;
+    if (!question.value.trim()) {
+      setQuestion({ ...question, error: "You must add a question" });
+      return;
+    }
+    if (!answer.value.trim()) {
+      setAnswer({ ...answer, error: "You must add an answer" });
+      return;
+    }
     onSubmit({
-      question,
-      answer,
+      question: question.value,
+      answer: answer.value,
       createdAt: new Date().toISOString(),
       id: uuidv4(),
     });
-    setQuestion("");
-    setAnswer("");
+    setQuestion({ value: "", error: undefined });
+    setAnswer({ value: "", error: undefined });
   };
 
   return (
@@ -37,16 +52,16 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
           className="space-y-4 flex flex-col items-center"
         >
           <Input
-            value={question}
+            content={question}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setQuestion(e.target.value)
+              setQuestion({ error: undefined, value: e.target.value })
             }
             placeholder="Enter your question"
           />
           <Input
-            value={answer}
+            content={answer}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setAnswer(e.target.value)
+              setAnswer({ error: undefined, value: e.target.value })
             }
             placeholder="Enter the answer"
           />
