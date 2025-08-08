@@ -2,18 +2,13 @@ import { useState } from "react";
 import { FAQItem } from "../molecules/FAQItem";
 import { Modal } from "../molecules/Modal";
 
-interface FAQ {
-  question: string;
-  answer: string;
-}
-
 interface FAQSectionProps {
-  faqs: FAQ[];
-  onDelete: (index: number) => void;
+  faqs: IFaq[];
+  onDelete: (index: string) => void;
 }
 
 export const FAQSection = ({ faqs, onDelete }: FAQSectionProps) => {
-  const [deleteIndex, setDeleteIndex] = useState<number | null>(null);
+  const [deleteIndex, setDeleteIndex] = useState<string | null>(null);
 
   const handleConfirmDelete = () => {
     if (deleteIndex !== null) {
@@ -26,12 +21,12 @@ export const FAQSection = ({ faqs, onDelete }: FAQSectionProps) => {
     <section className="py-10 px-4 max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold mb-6">FAQs</h2>
       <div className="space-y-3">
-        {faqs.map((faq, index) => (
+        {faqs.map((faq) => (
           <FAQItem
-            key={index}
+            key={faq.id}
             question={faq.question}
             answer={faq.answer}
-            onDelete={() => setDeleteIndex(index)}
+            onDelete={() => setDeleteIndex(faq.id)}
           />
         ))}
       </div>

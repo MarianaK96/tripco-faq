@@ -1,27 +1,15 @@
-import { useState } from "react";
-
 import { FormSection, FAQSection } from "src/components/common/organisms";
-
-interface FAQ {
-  question: string;
-  answer: string;
-}
+import { useFaqStore } from "src/store";
 
 export const LandingPageTemplate = () => {
-  const [faqs, setFaqs] = useState<FAQ[]>([
-    {
-      question: "What is your cancellation policy?",
-      answer:
-        "You can cancel within 7 days of your booking for a full refund. ",
-    },
-  ]);
+  const faqStore = useFaqStore();
 
-  const addFAQ = (faq: FAQ) => {
-    setFaqs([...faqs, faq]);
+  const addFAQ = (faq: IFaq) => {
+    faqStore.addFaq(faq);
   };
 
-  const deleteFAQ = (index: number) => {
-    setFaqs(faqs.filter((_, i) => i !== index));
+  const deleteFAQ = (id: string) => {
+    faqStore.removeFaq(id);
   };
 
   return (
@@ -33,7 +21,7 @@ export const LandingPageTemplate = () => {
         <FormSection onSubmit={addFAQ} />
       </div>
 
-      <FAQSection faqs={faqs} onDelete={deleteFAQ} />
+      <FAQSection faqs={faqStore.faqs} onDelete={deleteFAQ} />
     </div>
   );
 };

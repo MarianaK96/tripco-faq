@@ -1,19 +1,30 @@
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent, useMemo } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import { Input } from "../atoms/Input";
 import { Button } from "../atoms/Button";
 
 interface FormSectionProps {
-  onSubmit: (faq: { question: string; answer: string }) => void;
+  onSubmit: (faq: IFaq) => void;
 }
 
 export const FormSection = ({ onSubmit }: FormSectionProps) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
+  // @TODO
+  // how often should this rerender
+  const uuid = useMemo(() => uuidv4(), []);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!question.trim() || !answer.trim()) return;
-    onSubmit({ question, answer });
+    onSubmit({
+      question,
+      answer,
+      createdAt: new Date().toISOString(),
+      id: uuid,
+    });
     setQuestion("");
     setAnswer("");
   };

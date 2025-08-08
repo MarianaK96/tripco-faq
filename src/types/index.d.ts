@@ -4,5 +4,4 @@ interface IFaq {
   answer: string;
   category?: string;
   createdAt: string;
-  updatedAt: string;
 }
