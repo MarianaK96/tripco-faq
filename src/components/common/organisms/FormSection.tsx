@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent, useMemo } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { Input } from "../atoms/Input";
@@ -14,7 +14,6 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
 
   // @TODO
   // how often should this rerender
-  const uuid = useMemo(() => uuidv4(), []);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -23,7 +22,7 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
       question,
       answer,
       createdAt: new Date().toISOString(),
-      id: uuid,
+      id: uuidv4(),
     });
     setQuestion("");
     setAnswer("");
@@ -53,7 +52,7 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
           />
           <Button
             type="submit"
-            className="bg-blue-500 text-white w-fit px-8 mx-auto"
+            className="bg-amber-600 hover:bg-amber-700 text-white w-fit px-8 mx-auto"
           >
             Submit
           </Button>

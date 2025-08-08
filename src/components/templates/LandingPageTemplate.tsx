@@ -13,15 +13,16 @@ export const LandingPageTemplate = () => {
   };
 
   return (
-    <div>
-      <div className="bg-blue-100 pt-8">
-        <h1 className="text-5xl font-bold w-fit mx-auto">
+    <div className="lg:flex">
+      <div className="bg-amber-100 pt-8 lg:w-1/2 lg:h-screen lg:px-4">
+        <h1 className="text-3xl md:text-5xl font-bold w-fit mx-auto">
           Frequently Asked Questions
         </h1>
         <FormSection onSubmit={addFAQ} />
       </div>
-
-      <FAQSection faqs={faqStore.faqs} onDelete={deleteFAQ} />
+      <div className="lg:w-1/2 lg:px-4">
+        <FAQSection onDelete={deleteFAQ} />
+      </div>
     </div>
   );
 };

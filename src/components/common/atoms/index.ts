@@ -1,3 +1,4 @@
-export { Button } from "./Button";
-export { IconButton } from "./IconButton";
-export { Input } from "./Input";
+export * from "./Button";
+export * from "./IconButton";
+export * from "./Input";
+export * from "./Tooltip";
