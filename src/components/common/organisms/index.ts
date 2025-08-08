@@ -1,2 +1,2 @@
-export * from "./movieMapping";
-export * from "./header";
+export * from "./FAQSection";
+export * from "./FormSection";
