@@ -37,10 +37,12 @@ export const FAQSection = ({ onDelete }: FAQSectionProps) => {
   };
 
   return (
-    <section className="py-10 px-4 max-w-2xl lg:mx-0 mx-auto">
+    <section className="">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold mb-6">FAQs</h2>
-        <FAQSorting isAscending={isAscending} onClick={handleSort} />
+        <h2 className="text-2xl font-bold mb-6">Queries</h2>
+        {sortedFaqs.length > 0 ? (
+          <FAQSorting isAscending={isAscending} onClick={handleSort} />
+        ) : null}
       </div>
 
       <div className="space-y-3">

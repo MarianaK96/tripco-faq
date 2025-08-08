@@ -15,13 +15,18 @@ export const Tooltip = ({ text, children }: TooltipProps) => {
     if (visible && wrapperRef.current) {
       const rect = wrapperRef.current.getBoundingClientRect();
       const spaceOnRight = window.innerWidth - rect.right;
+      const spaceOnTop = rect.top;
 
-      // if there's less than 150px space on the right, show on left
+      if (spaceOnTop < 150) {
+        setPosition("left");
+        return;
+      }
+
       if (spaceOnRight < 150) {
         setPosition("left");
-      } else {
-        setPosition("top");
+        return;
       }
+      setPosition("top");
     }
   }, [visible]);
 
@@ -35,7 +40,7 @@ export const Tooltip = ({ text, children }: TooltipProps) => {
       {children}
       {visible && (
         <div
-          className={`absolute z-50 px-3 py-1 text-sm text-white bg-black rounded shadow-lg whitespace-nowrap
+          className={`absolute z-50 px-3 py-1 text-sm text-white bg-black rounded shadow-lg text-wrap max-w-3xs w-max
             ${
               position === "top"
                 ? "bottom-full mb-2 left-1/2 transform -translate-x-1/2"
@@ -48,7 +53,7 @@ export const Tooltip = ({ text, children }: TooltipProps) => {
             }
           `}
         >
-          {text}
+          <span className="w-full">{text}</span>
         </div>
       )}
     </div>

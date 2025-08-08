@@ -1,8 +1,8 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { Input } from "../atoms/Input";
-import { Button } from "../atoms/Button";
+import { InfoIcon } from "@phosphor-icons/react";
+import { Tooltip, Input, Button } from "src/components/common/atoms";
 
 interface FormSectionProps {
   onSubmit: (faq: IFaq) => void;
@@ -44,9 +44,15 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
   };
 
   return (
-    <section className="">
-      <div className="py-10 px-4 max-w-2xl mx-auto">
-        <h2 className="text-2xl font-bold mb-4">Submit a Question</h2>
+    <section>
+      <div className="py-10">
+        <div className="flex items-center mb-4 gap-2">
+          <h2 className="text-2xl font-bold">Submit a Question</h2>
+          <Tooltip text="Enter a question and answer, and it will be added to your FAQ section">
+            <InfoIcon className="cursor-pointer" />
+          </Tooltip>
+        </div>
+
         <form
           onSubmit={handleSubmit}
           className="space-y-4 flex flex-col items-center"
