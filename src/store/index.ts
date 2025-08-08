@@ -1,16 +1,14 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { movieSlice, MovieState } from "./movies.store";
-import { bookmarkSlice, BookmarkState } from "./bookmarks.store";
+import { faqSlice, FaqState } from "./faq.store";
 
-export const useWookieStore = create<MovieState & BookmarkState>()(
+export const useFaqStore = create<FaqState>()(
   persist(
     (...a) => ({
-      ...movieSlice(...a),
-      ...bookmarkSlice(...a),
+      ...faqSlice(...a),
     }),
     {
-      name: 'wookie-store',
+      name: 'faq-store',
       storage: createJSONStorage(() => localStorage),
     }
   )
