@@ -1,10 +1,11 @@
-import { LandingPageTemplate } from "./components/templates/LandingPageTemplate";
+import { ErrorBoundary } from "src/components/errors";
+import { LandingPageTemplate } from "src/components/templates/LandingPageTemplate";
 
 function App() {
   return (
-    <div>
+    <ErrorBoundary>
       <LandingPageTemplate />
-    </div>
+    </ErrorBoundary>
   );
 }
 

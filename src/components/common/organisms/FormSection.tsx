@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { InfoIcon } from "@phosphor-icons/react";
 import { Tooltip, Input, Button } from "src/components/common/atoms";
+import { DelayCheckbox } from "src/components/molecules";
 
 interface FormSectionProps {
   onSubmit: (faq: IFaq) => void;
@@ -22,9 +23,15 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
     value: "",
     error: undefined,
   });
+  const [checkboxSelected, setCheckboxSelected] = useState(false);
 
+  const clearInputs = () => {
+    setQuestion({ value: "", error: undefined });
+    setAnswer({ value: "", error: undefined });
+  };
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
     if (!question.value.trim()) {
       setQuestion({ ...question, error: "You must add a question" });
       return;
@@ -33,14 +40,26 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
       setAnswer({ ...answer, error: "You must add an answer" });
       return;
     }
+    if (checkboxSelected) {
+      setTimeout(() => {
+        onSubmit({
+          question: question.value,
+          answer: answer.value,
+          createdAt: new Date().toISOString(),
+          id: uuidv4(),
+        });
+        clearInputs();
+      }, 5000);
+
+      return;
+    }
     onSubmit({
       question: question.value,
       answer: answer.value,
       createdAt: new Date().toISOString(),
       id: uuidv4(),
     });
-    setQuestion({ value: "", error: undefined });
-    setAnswer({ value: "", error: undefined });
+    clearInputs();
   };
 
   return (
@@ -68,12 +87,17 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
             }
             placeholder="Enter the answer"
           />
-          <Button
-            type="submit"
-            className="bg-amber-600 hover:bg-amber-700 text-white w-fit px-8 "
-          >
-            Submit
-          </Button>
+          <div className="flex w-full justify-between">
+            <Button
+              type="submit"
+              className="bg-amber-600 hover:bg-amber-700 text-white w-fit px-8 "
+            >
+              Submit
+            </Button>{" "}
+            <DelayCheckbox
+              onClick={() => setCheckboxSelected((prev) => !prev)}
+            />
+          </div>
         </form>
       </div>
     </section>

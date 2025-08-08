@@ -43,8 +43,8 @@ export class ErrorBoundary extends Component<
 
       return (
         <div className="text-center flex flex-col gap-8 w-fit mx-auto my-auto h-[70vh] items-center justify-center">
-          <div className="flex items-center justify-center p-4 mx-auto bg-blue-100 rounded-full">
-            <BugIcon size={32} className=" text-blue-600" />
+          <div className="flex items-center justify-center p-4 mx-auto bg-amber-100 rounded-full">
+            <BugIcon size={32} className=" text-amber-600" />
           </div>
           <h1 className="md:text-5xl text-5xl">
             Oops! <br />
@@ -53,7 +53,7 @@ export class ErrorBoundary extends Component<
           <div className="mt-6">
             <button
               onClick={() => window.location.reload()}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md w-fit cursor-pointer hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="bg-amber-500 text-white px-4 py-2 rounded-md w-fit cursor-pointer hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
             >
               <h4 className="text-xl">Refresh Page</h4>
             </button>

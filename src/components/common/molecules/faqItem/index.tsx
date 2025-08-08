@@ -20,7 +20,7 @@ export const FAQItem = ({ question, answer, onDelete }: FAQItemProps) => {
       <div className="flex space-x-2">
         <IconButton
           icon={isOpen ? <MinusIcon /> : <PlusIcon />}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => setIsOpen((prev) => !prev)}
           className="bg-gray-200 rounded hover:bg-gray-300"
         />
         <IconButton

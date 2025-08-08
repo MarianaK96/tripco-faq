@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FAQItem, Modal } from "src/components/common/molecules";
-import { FAQSorting } from "src/components/molecules/FAQSorting";
+import { FAQSorting } from "src/components/molecules/faqSorting";
 import { useFaqStore } from "src/store";
 import { InfoIcon } from "@phosphor-icons/react";
 import { Button, Tooltip } from "../atoms";
@@ -14,14 +14,14 @@ interface FAQSectionProps {
 }
 
 export const FAQSection = ({ onDelete }: FAQSectionProps) => {
-  const faqStore = useFaqStore();
+  const faqs = useFaqStore().faqs;
   const [deleteIndex, setDeleteIndex] = useState<string | null>(null);
   const [isAscending, setIsAscending] = useState(true);
-  const [sortedFaqs, setSortedFaqs] = useState(faqStore.faqs);
+  const [sortedFaqs, setSortedFaqs] = useState(faqs);
 
   useEffect(() => {
-    setSortedFaqs(faqStore.faqs);
-  }, [faqStore.faqs]);
+    setSortedFaqs(faqs);
+  }, [faqs]);
 
   const handleConfirmDelete = () => {
     if (deleteIndex !== null) {

@@ -24,7 +24,7 @@ export const Tooltip = ({ text, children }: TooltipProps) => {
         return;
       }
 
-      if (spaceOnRight < 150) {
+      if (spaceOnRight < 256) {
         setPosition("left");
         return;
       }
