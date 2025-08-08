@@ -1,4 +1,2 @@
-export * from "./movieCard";
-export * from "./genreMapping";
-export * from "./searchInput";
-export { Skeleton as SkeletonGenreMapping } from "./genreMapping/skeleton";
+export { FAQItem } from "./FAQItem";
+export { Modal } from "./Modal";

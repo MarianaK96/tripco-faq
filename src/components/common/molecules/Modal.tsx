@@ -1,0 +1,25 @@
+import { Button } from "../atoms/Button";
+
+interface ModalProps {
+  message: string;
+  onConfirm: () => void;
+  onCancel: () => void;
+}
+
+export const Modal = ({ message, onConfirm, onCancel }: ModalProps) => {
+  return (
+    <div className="fixed inset-0 backdrop-blur-xs flex justify-center items-center">
+      <div className="bg-white p-6 rounded-lg shadow-md max-w-sm w-full">
+        <p className="mb-4">{message}</p>
+        <div className="flex justify-end space-x-3">
+          <Button className="bg-gray-300" onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button className="bg-red-500 text-white" onClick={onConfirm}>
+            Delete
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
