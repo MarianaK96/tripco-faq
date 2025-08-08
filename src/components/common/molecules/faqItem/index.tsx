@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IconButton } from "../atoms/IconButton";
+import { IconButton } from "../atoms/iconButton";
 import { MinusIcon, PlusIcon, XIcon } from "@phosphor-icons/react";
 
 interface FAQItemProps {

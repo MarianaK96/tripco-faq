@@ -1,4 +1,4 @@
-import { Button } from "../atoms/Button";
+import { Button } from "src/components/common/atoms";
 
 interface ModalProps {
   message: string;

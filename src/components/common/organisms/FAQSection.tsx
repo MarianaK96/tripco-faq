@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { FAQItem } from "../molecules/FAQItem";
-import { Modal } from "../molecules/Modal";
+import { FAQItem, Modal } from "src/components/common/molecules";
 import { FAQSorting } from "src/components/molecules/FAQSorting";
 import { useFaqStore } from "src/store";
 import { ExclamationMarkIcon, InfoIcon } from "@phosphor-icons/react";

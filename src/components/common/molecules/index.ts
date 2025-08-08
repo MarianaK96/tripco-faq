@@ -1,3 +1,3 @@
-export * from "./FAQItem";
-export * from "./Modal";
-export * from "./Callout";
+export * from "./faqItem";
+export * from "./modal";
+export * from "./callout";
