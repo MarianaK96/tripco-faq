@@ -10,12 +10,9 @@ interface FAQ {
 export const LandingPageTemplate = () => {
   const [faqs, setFaqs] = useState<FAQ[]>([
     {
-      question: "What is your return policy?",
-      answer: "You can return items within 30 days.",
-    },
-    {
-      question: "Do you offer international shipping?",
-      answer: "Yes, we ship worldwide.",
+      question: "What is your cancellation policy?",
+      answer:
+        "You can cancel within 7 days of your booking for a full refund. ",
     },
   ]);
 
