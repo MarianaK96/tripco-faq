@@ -22,14 +22,14 @@
 ## Features
 
 - **All functionality required** - Adding FAQs, deleting queries, optional five second delay, sorting
-- **Responsiveness** - Mobile-first design approach
-- **Storybook** an initial implementations; for a larger project I would add more comprehensive coverage
+- **Responsiveness** - Works on mobile, tablet and desktop
+- **Storybook** for documentation of UI components
 
 ## Best Practices
 
 - **Husky for commit linting** - Ensures code quality
 - **esLint for catching errors** - Sets standard for code quality
-- **Centralized state management** - Using Zustand for state updates
+- **Centralized state management** - Using Zustand for state
 - **Follow conventional commit messages** - Standardized commit format for better tracking
 - **Atomic Design** principles - Component hierarchy organized as:
   - **Atoms**: Basic building blocks (buttons, inputs)
@@ -37,7 +37,7 @@
   - **Organisms**: Complex UI components (form section, faq section)
   - **Templates**: Page-level layout structures
   - **Pages**: Specific instances of templates
-- **Accessibility** - Proper ARIA labels and semantic HTML
+- **Accessibility** - ARIA labels and semantic HTML
 
 ## Tech Stack
 
