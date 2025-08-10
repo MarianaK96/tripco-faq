@@ -45,7 +45,7 @@ export const FAQSection = ({ onDelete }: FAQSectionProps) => {
 
   if (noFaqs) {
     return (
-      <section>
+      <div>
         <h2 className="text-2xl mb-4 font-bold">Queries</h2>
         <Callout
           icon={
@@ -56,12 +56,12 @@ export const FAQSection = ({ onDelete }: FAQSectionProps) => {
           }
           children="Add some questions & answers using the form"
         />
-      </section>
+      </div>
     );
   }
 
   return (
-    <section>
+    <div>
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center mb-4 gap-2">
           <h2 className="text-2xl font-bold">Queries</h2>
@@ -105,6 +105,6 @@ export const FAQSection = ({ onDelete }: FAQSectionProps) => {
           Delete all
         </Button>
       ) : null}
-    </section>
+    </div>
   );
 };

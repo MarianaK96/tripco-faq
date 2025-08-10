@@ -63,7 +63,7 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
   };
 
   return (
-    <section>
+    <div>
       <div className="py-10">
         <div className="flex items-center mb-4 gap-2">
           <h2 className="text-2xl font-bold">Submit a Question</h2>
@@ -100,6 +100,6 @@ export const FormSection = ({ onSubmit }: FormSectionProps) => {
           </div>
         </form>
       </div>
-    </section>
+    </div>
   );
 };

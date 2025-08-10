@@ -1,4 +1,4 @@
-import { ReactNode, useState, useRef, useEffect } from "react";
+import { ReactNode, useState, useRef, useEffect, useId } from "react";
 
 interface TooltipProps {
   text: string;
@@ -7,12 +7,34 @@ interface TooltipProps {
 
 type PositionType = "top" | "left" | "right";
 
+const isTouch = typeof window !== "undefined" && "ontouchstart" in window;
+
 export const Tooltip = ({ text, children }: TooltipProps) => {
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState<PositionType>("top");
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const id = useId();
 
-  // tooltip is aware of container boundary
+  // close on outside click
+  // needed for touchscreen devices
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent | TouchEvent) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(e.target as Node)
+      ) {
+        setVisible(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, []);
+
+  // tooltip is aware of container boundary and adjusts position
   useEffect(() => {
     if (visible && wrapperRef.current) {
       const rect = wrapperRef.current.getBoundingClientRect();
@@ -23,7 +45,6 @@ export const Tooltip = ({ text, children }: TooltipProps) => {
         setPosition("top");
         return;
       }
-
       if (spaceOnRight < 256) {
         setPosition("left");
         return;
@@ -36,12 +57,16 @@ export const Tooltip = ({ text, children }: TooltipProps) => {
     <div
       ref={wrapperRef}
       className="relative flex items-center"
-      onMouseEnter={() => setVisible(true)}
-      onMouseLeave={() => setVisible(false)}
+      onMouseEnter={!isTouch ? () => setVisible(true) : undefined}
+      onMouseLeave={!isTouch ? () => setVisible(false) : undefined}
+      onClick={isTouch ? () => setVisible((v) => !v) : undefined}
+      aria-describedby={id}
     >
       {children}
       {visible && (
         <div
+          id={id}
+          role="tooltip"
           className={`absolute z-50 px-3 py-1 text-sm text-white bg-black rounded shadow-lg text-wrap max-w-3xs w-max
             ${
               position === "top"
@@ -53,14 +78,14 @@ export const Tooltip = ({ text, children }: TooltipProps) => {
                 ? "right-full mr-2 top-1/2 transform -translate-y-1/2"
                 : ""
             }
-              ${
-                position === "right"
-                  ? "left-full ml-2 bottom-1/2 transform translate-y-1/2"
-                  : ""
-              }
+            ${
+              position === "right"
+                ? "left-full ml-2 bottom-1/2 transform translate-y-1/2"
+                : ""
+            }
           `}
         >
-          <span className="w-full">{text}</span>
+          <span>{text}</span>
         </div>
       )}
     </div>

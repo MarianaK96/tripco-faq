@@ -16,6 +16,9 @@ export const FAQSorting = ({ isAscending, onClick }: FAQSortingProps) => {
       <IconButton
         icon={isAscending ? <SortDescendingIcon /> : <SortAscendingIcon />}
         onClick={onClick}
+        aria-label={`Sort alphabetically in ${
+          isAscending ? "ascending" : "descending"
+        } order`}
         className="bg-gray-200 hover:bg-gray-300 rounded"
       />
     </Tooltip>
