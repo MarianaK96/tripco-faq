@@ -14,13 +14,7 @@
    pnpm dev
    ```
 
-3. Run tests:
-
-   ```bash
-   pnpm test
-   ```
-
-4. View Storybook components:
+3. View Storybook components:
    ```bash
    pnpm storybook
    ```
